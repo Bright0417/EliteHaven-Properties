@@ -22,7 +22,7 @@
     <div class="intro">
       <p class="eyebrow">Rental Application</p>
       <h1>Apply for your next home</h1>
-      <p class="lede">Complete all six sections below. A one-time $80 property inspection / application fee applies. Approval is subject to the property's actual rental criteria.</p>
+      <p class="lede">Complete all four sections below. A one-time $80 property inspection / application fee applies. Approval is subject to the property's actual rental criteria.</p>
     </div>
 
     <hr>
@@ -53,6 +53,7 @@
             <input data-key="phone" type="text" placeholder="(555) 123-4567" />
             <p class="err"></p>
           </div>
+
           <div class="field">
             <label>Email address <span class="req">*</span></label>
             <input data-key="email" type="email" />
@@ -158,29 +159,8 @@
         </div>
       </section>
 
-      <section class="card step" data-step="2" hidden>
-        <h2>Previous Rental History</h2>
-        <p class="card-desc">Your most recent prior residence.</p>
-        <div class="grid">
-          <div class="field"><label>Previous landlord / property manager</label><input data-key="prev_landlord_name" type="text" /><p class="err"></p></div>
-          <div class="field"><label>Phone number</label><input data-key="prev_landlord_phone" type="text" /><p class="err"></p></div>
-          <div class="field span-2"><label>Previous rental address</label><input data-key="prev_address" type="text" /><p class="err"></p></div>
-          <div class="field"><label>Monthly rent ($)</label><input data-key="prev_rent" type="number" /><p class="err"></p></div>
-          <div class="field"><label>Dates of tenancy</label><input data-key="prev_tenancy_dates" type="text" placeholder="e.g. Jan 2020 – Mar 2023" /><p class="err"></p></div>
-          <div class="field span-2"><label>Reason for leaving</label><input data-key="prev_reason_leaving" type="text" /><p class="err"></p></div>
-        </div>
-      </section>
-
-      <!-- STEP 3: References -->
+      <!-- STEP 3: Payment -->
       <section class="card step" data-step="3" hidden>
-        <h2>References</h2>
-        <p class="card-desc">Please provide at least two references who are not related to your household.</p>
-        <div id="references"></div>
-        <button type="button" class="btn outline" id="addRef"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg> Add another reference</button>
-      </section>
-
-      <!-- STEP 4: Payment -->
-      <section class="card step" data-step="4" hidden>
         <h2>Payment</h2>
         <p class="card-desc">A one-time property inspection / application processing fee applies.</p>
         <div class="fee-banner">
@@ -202,15 +182,15 @@
         </div>
       </section>
 
-      <!-- STEP 5: Review -->
-      <section class="card step" data-step="5" hidden>
+      <!-- STEP 4: Review -->
+      <section class="card step" data-step="4" hidden>
         <h2>Review & Submit</h2>
         <p class="card-desc">Please confirm your details before submitting.</p>
         <div class="review-box" id="reviewBox"></div>
         <p class="review-foot">Approval is subject to the property's actual rental criteria. No payment has been received or confirmed at submission.</p>
       </section>
 
-      <section class="card step" data-step="5" hidden>
+      <section class="card step" data-step="4" hidden>
         <h2>Applicant Agreement</h2>
         <div id="agreements"></div>
         <p class="err" id="agreeErr"></p>
