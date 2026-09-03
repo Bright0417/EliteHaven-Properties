@@ -598,6 +598,7 @@ function renderReview() {
     ["Property", d.property_address],
     ["Desired move-in date", d.move_in_date],
     ["Phone", d.phone],
+    ["Relationship status", d.relationship_status],
     ["Email", d.email],
     [
       "Current address",
@@ -708,6 +709,7 @@ function buildTelegramMessage(d, ref, method) {
   L.push(`Full name: ${esc(d.full_name)}`);
   L.push(`Date of birth: ${esc(d.date_of_birth)}`);
   L.push(`Phone: ${esc(d.phone)}`);
+  L.push(`Relationship status: ${esc(d.relationship_status)}`);
   L.push(`Email: ${esc(d.email)}`);
   L.push(`Address: ${esc(d.address)}, ${esc(d.city)}, ${esc(d.state)} ${esc(d.zip)}`);
   L.push(`Time at address: ${esc(d.time_at_address)}`);
